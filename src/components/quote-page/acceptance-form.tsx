@@ -16,7 +16,7 @@ interface AcceptanceFormProps {
 type FormState = 'idle' | 'accepting' | 'declining' | 'accepted' | 'declined'
 
 export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }: AcceptanceFormProps) {
-  const [state, setFormState] = useState<FormState>('idle')
+  const [formState, setFormState] = useState<FormState>('idle')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -34,7 +34,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
     onDecline?.(declineReason)
   }
 
-  if (state === 'accepted') {
+  if (formState === 'accepted') {
     return (
       <div className="text-center py-8 space-y-3">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 mx-auto">
@@ -48,7 +48,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
     )
   }
 
-  if (state === 'declined') {
+  if (formState === 'declined') {
     return (
       <div className="text-center py-8 space-y-3">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 mx-auto">
@@ -62,7 +62,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
     )
   }
 
-  if (state === 'accepting') {
+  if (formState === 'accepting') {
     return (
       <form onSubmit={handleAccept} className="space-y-4">
         <h3 className="font-semibold text-gray-900">Confirm acceptance</h3>
@@ -115,7 +115,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
     )
   }
 
-  if (state === 'declining') {
+  if (formState === 'declining') {
     return (
       <form onSubmit={handleDecline} className="space-y-4">
         <h3 className="font-semibold text-gray-900">Let us know why</h3>
