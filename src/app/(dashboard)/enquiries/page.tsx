@@ -1,100 +1,88 @@
-import { Plus, Inbox } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageHeader } from '@/components/shared/page-header'
-import { EmptyState } from '@/components/shared/empty-state'
 import { SearchInput } from '@/components/shared/search-input'
 import { EnquiryCard } from '@/components/enquiries/enquiry-card'
-import { Enquiry } from '@/types'
+import type { Enquiry } from '@/types'
 
-const PLACEHOLDER_ENQUIRIES: Enquiry[] = [
+const MOCK_ENQUIRIES: Enquiry[] = [
   {
     id: '1',
     userId: 'user1',
     title: 'Boiler replacement needed urgently',
-    description: 'Current boiler is 15 years old and breaking down. Need full replacement including flushing of system.',
     source: 'WEBSITE',
     status: 'NEW',
-    contactName: 'Emma Wilson',
-    contactEmail: 'emma.wilson@email.com',
-    contactPhone: '07700 900123',
+    contactName: 'David Clarke',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
-    updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
+    updatedAt: new Date(),
+    description: 'My boiler has completely stopped working. Need an urgent replacement quote.',
   },
   {
     id: '2',
     userId: 'user1',
     title: 'Kitchen and bathroom plumbing works',
-    description: 'New kitchen extension — need all plumbing roughed in before plastering.',
     source: 'REFERRAL',
     status: 'CONTACTED',
-    contactName: 'Robert Clarke',
-    contactEmail: 'rob.clarke@email.com',
-    contactPhone: '07700 900456',
+    contactName: 'Sue Harper',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
-    updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 20),
+    updatedAt: new Date(),
+    description: 'Full kitchen and bathroom plumbing for a new build extension.',
   },
   {
     id: '3',
     userId: 'user1',
     title: 'Leak repair under kitchen sink',
-    description: 'Dripping badly for 2 weeks. Need someone ASAP.',
     source: 'PHONE',
     status: 'QUOTED',
-    contactName: 'Patricia Moore',
-    contactPhone: '07700 900789',
+    contactName: 'Paul Newman',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 48),
-    updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 30),
+    updatedAt: new Date(),
+    description: 'Persistent leak under kitchen sink. Needs investigation and repair.',
   },
   {
     id: '4',
     userId: 'user1',
     title: 'Annual boiler service',
-    description: 'Just moved into new property, want it serviced.',
     source: 'EMAIL',
     status: 'CLOSED',
-    contactName: 'David Thompson',
-    contactEmail: 'david.t@email.com',
+    contactName: 'Linda Scott',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 72),
-    updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 60),
+    updatedAt: new Date(),
+    description: 'Annual boiler service and safety check.',
+  },
+  {
+    id: '5',
+    userId: 'user1',
+    title: 'New radiator installation',
+    source: 'SOCIAL_MEDIA',
+    status: 'NEW',
+    contactName: 'Chris Brown',
+    createdAt: new Date(Date.now() - 1000 * 60 * 30),
+    updatedAt: new Date(),
+    description: 'Need two new radiators added to a bedroom extension.',
   },
 ]
 
 export default function EnquiriesPage() {
-  const enquiries = PLACEHOLDER_ENQUIRIES
-
   return (
     <div className="space-y-6 animate-slideUp">
       <PageHeader
         title="Enquiries"
-        subtitle={`${enquiries.length} total enquiries`}
+        subtitle="Manage and convert incoming job enquiries"
       >
-        <Button>
-          <Plus className="h-4 w-4 mr-2" />
+        <Button size="sm">
+          <Plus className="h-4 w-4 mr-1.5" />
           New Enquiry
         </Button>
       </PageHeader>
 
-      {/* Search & filter */}
-      <div className="flex items-center gap-3">
-        <SearchInput placeholder="Search enquiries..." className="max-w-xs" />
-      </div>
+      <SearchInput placeholder="Search enquiries..." />
 
-      {/* Enquiry list */}
-      {enquiries.length === 0 ? (
-        <EmptyState
-          icon={Inbox}
-          title="No enquiries yet"
-          description="When customers reach out, their enquiries will appear here. Start by adding your first enquiry."
-          actionLabel="Add Enquiry"
-          actionHref="/enquiries/new"
-        />
-      ) : (
-        <div className="grid gap-3">
-          {enquiries.map((enquiry) => (
-            <EnquiryCard key={enquiry.id} enquiry={enquiry} />
-          ))}
-        </div>
-      )}
+      <div className="space-y-3">
+        {MOCK_ENQUIRIES.map((enquiry) => (
+          <EnquiryCard key={enquiry.id} enquiry={enquiry} />
+        ))}
+      </div>
     </div>
   )
 }

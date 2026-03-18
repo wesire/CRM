@@ -1,41 +1,51 @@
-import {
-  FileText,
-  PoundSterling,
-  Clock,
-  Bell,
-  Plus,
-  Inbox,
-} from 'lucide-react'
+'use client'
+
+import Link from 'next/link'
+import { Plus, TrendingUp, Clock, CheckCircle2, Bell } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { StatCard } from '@/components/dashboard/stat-card'
 import { ActionCard } from '@/components/dashboard/action-card'
-import { RecentActivity } from '@/components/dashboard/recent-activity'
 import { QuotePipeline } from '@/components/dashboard/quote-pipeline'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { RecentActivity } from '@/components/dashboard/recent-activity'
+import { getGreeting, formatCurrency } from '@/lib/utils'
+
+const MOCK_PIPELINE = [
+  { status: 'DRAFT', count: 2 },
+  { status: 'SENT', count: 5 },
+  { status: 'OPENED', count: 3 },
+  { status: 'REPLIED', count: 2 },
+  { status: 'ACCEPTED', count: 8 },
+]
+
+const MOCK_ACTIVITIES = [
+  { id: '1', type: 'QUOTE_SENT' as const, title: 'Quote QF-1024 sent to Sarah Wilson', createdAt: new Date(Date.now() - 1000 * 60 * 20) },
+  { id: '2', type: 'QUOTE_ACCEPTED' as const, title: 'Quote QF-1019 accepted by Tom Barnes', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2) },
+  { id: '3', type: 'ENQUIRY_CREATED' as const, title: 'New enquiry: Boiler replacement needed', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 5) },
+  { id: '4', type: 'QUOTE_OPENED' as const, title: 'Quote QF-1022 opened by Mark Davis', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 8) },
+  { id: '5', type: 'FOLLOW_UP_COMPLETED' as const, title: 'Follow-up sent for quote QF-1018', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24) },
+]
 
 export default function DashboardPage() {
+  const greeting = getGreeting()
+
   return (
-    <div className="space-y-8 animate-slideUp">
-      {/* Welcome Header */}
-      <div className="flex items-start justify-between">
+    <div className="space-y-6 animate-slideUp">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-            Good morning, James 👋
-          </h1>
-          <p className="text-gray-500 mt-1">
-            Here&apos;s what needs your attention today.
-          </p>
+          <h1 className="text-2xl font-bold text-gray-900">{greeting}, James</h1>
+          <p className="text-gray-500 mt-0.5">Here is what is happening with your quotes today.</p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" asChild>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" asChild>
             <Link href="/enquiries">
-              <Inbox className="h-4 w-4 mr-2" />
+              <Plus className="h-4 w-4 mr-1.5" />
               New Enquiry
             </Link>
           </Button>
-          <Button asChild>
+          <Button size="sm" asChild>
             <Link href="/quotes">
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="h-4 w-4 mr-1.5" />
               New Quote
             </Link>
           </Button>
@@ -45,104 +55,67 @@ export default function DashboardPage() {
       {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          title="Total Quotes"
-          value="40"
-          icon={FileText}
+          title="Active Quotes"
+          value="12"
+          icon={TrendingUp}
           trend="up"
-          trendValue="+12%"
+          trendValue="+2 this week"
         />
         <StatCard
-          title="Won This Month"
-          value="£8,420"
-          icon={PoundSterling}
+          title="Quotes Sent"
+          value="23"
+          icon={CheckCircle2}
           trend="up"
-          trendValue="+23%"
+          trendValue="+15% vs last month"
         />
         <StatCard
-          title="Awaiting Response"
-          value="13"
-          icon={Clock}
-          trend="neutral"
-          trendValue="same"
+          title="Total Won"
+          value={formatCurrency(14600)}
+          icon={TrendingUp}
+          trend="up"
+          trendValue="+8% vs last month"
         />
         <StatCard
           title="Follow-ups Due"
-          value="5"
+          value="4"
           icon={Bell}
-          trend="down"
-          trendValue="-2"
+          trend="neutral"
+          trendValue="2 overdue"
         />
       </div>
 
       {/* Action Cards */}
-      <div>
-        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
-          Needs Your Attention
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <ActionCard
-            title="Quotes needing follow-up"
-            description="Sent 3+ days ago with no response"
-            count={5}
-            href="/quotes?status=SENT"
-            icon={Clock}
-            urgency="warning"
-          />
-          <ActionCard
-            title="New enquiries"
-            description="Uncontacted enquiries waiting"
-            count={3}
-            href="/enquiries?status=NEW"
-            icon={Inbox}
-            urgency="danger"
-          />
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <ActionCard
+          title="Quotes Needing Attention"
+          description="3 quotes have had no response in 3+ days"
+          count={3}
+          href="/quotes"
+          icon={Clock}
+          urgency="warning"
+        />
+        <ActionCard
+          title="Enquiries to Convert"
+          description="3 new enquiries waiting to be quoted"
+          count={3}
+          href="/enquiries"
+          icon={TrendingUp}
+          urgency="normal"
+        />
+        <ActionCard
+          title="Follow-ups Due Today"
+          description="2 follow-ups are due today"
+          count={2}
+          href="/quotes"
+          icon={Bell}
+          urgency="danger"
+        />
       </div>
 
       {/* Pipeline + Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <QuotePipeline />
-          <RecentActivity />
-        </div>
-
-        {/* Quick tips / upcoming */}
-        <div className="space-y-4">
-          <div className="rounded-xl border border-brand-100 bg-brand-50 p-5">
-            <h3 className="text-sm font-semibold text-brand-700 mb-2">
-              💡 Quick tips
-            </h3>
-            <ul className="space-y-2 text-sm text-brand-600">
-              <li>• Follow up within 48 hours to double win rates</li>
-              <li>• Use quote notes to track customer conversations</li>
-              <li>• Set reminders for quotes expiring this week</li>
-            </ul>
-          </div>
-
-          <div className="rounded-xl border border-gray-100 bg-white p-5">
-            <h3 className="text-sm font-semibold text-gray-700 mb-3">
-              This month
-            </h3>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Quotes sent</span>
-                <span className="font-semibold text-gray-900">18</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Accepted</span>
-                <span className="font-semibold text-emerald-600">7</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Lost</span>
-                <span className="font-semibold text-rose-500">3</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Win rate</span>
-                <span className="font-bold text-gray-900">39%</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <QuotePipeline data={MOCK_PIPELINE} />
+        <RecentActivity activities={MOCK_ACTIVITIES} />
       </div>
     </div>
   )
