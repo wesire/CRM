@@ -86,10 +86,10 @@ export function PublicQuoteView({ quote, business }: PublicQuoteViewProps) {
           <div className="px-6 py-4 border-b border-gray-100">
             <h2 className="font-semibold text-gray-900">What&apos;s included</h2>
           </div>
-          <LineItemsDisplay items={requiredItems as any} accentColor={business.accentColor} />
+          <LineItemsDisplay items={requiredItems} />
           {optionalItems.length > 0 && (
             <OptionalExtras
-              items={optionalItems as any}
+              items={optionalItems}
               accentColor={business.accentColor}
               onSelectionChange={(_, total) => setExtrasTotal(total)}
             />
