@@ -47,7 +47,7 @@ const BUSINESS = {
   accentColor: '#6366f1',
 }
 
-export default function PublicQuotePage({ params }: { params: { token: string } }) {
+export default function PublicQuotePage() {
   const quote = PLACEHOLDER_QUOTE
   const requiredItems = quote.lineItems?.filter((li) => !li.optional) ?? []
   const optionalItems = quote.lineItems?.filter((li) => li.optional) ?? []

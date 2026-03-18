@@ -63,7 +63,7 @@ const PLACEHOLDER_ACTIVITIES: Activity[] = [
   { id: 'a4', userId: 'u1', customerId: 'c2', type: 'CUSTOMER_CREATED', title: 'Customer added', description: 'Mark Davis created', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 15) },
 ]
 
-export default function CustomerDetailPage({ params }: { params: { id: string } }) {
+export default function CustomerDetailPage() {
   const customer = PLACEHOLDER_CUSTOMER
 
   return (

@@ -16,7 +16,7 @@ export function OptionalExtras({ items, accentColor = '#6366f1', onSelectionChan
 
   if (items.length === 0) return null
 
-  const toggleExtra = (id: string, total: number) => {
+  const toggleExtra = (id: string) => {
     const next = new Set(selectedExtras)
     if (next.has(id)) {
       next.delete(id)
@@ -44,7 +44,7 @@ export function OptionalExtras({ items, accentColor = '#6366f1', onSelectionChan
             <div className="flex items-center gap-3 flex-1">
               <Switch
                 checked={selectedExtras.has(item.id)}
-                onCheckedChange={() => toggleExtra(item.id, item.total)}
+                onCheckedChange={() => toggleExtra(item.id)}
               />
               <div>
                 <p className="text-sm text-gray-700">{item.description}</p>

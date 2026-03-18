@@ -6,7 +6,7 @@ interface LineItemsDisplayProps {
   accentColor?: string
 }
 
-export function LineItemsDisplay({ items, accentColor = '#6366f1' }: LineItemsDisplayProps) {
+export function LineItemsDisplay({ items }: LineItemsDisplayProps) {
   const requiredItems = items.filter((i) => !i.optional)
 
   return (
