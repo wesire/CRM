@@ -27,7 +27,8 @@ export function PublicQuoteView({ quote, business }: PublicQuoteViewProps) {
   const [extrasTotal, setExtrasTotal] = useState(0)
   const requiredItems = quote.lineItems?.filter((i) => !i.optional) ?? []
   const optionalItems = quote.lineItems?.filter((i) => i.optional) ?? []
-  const grandTotal = quote.total + extrasTotal
+  const extrasTax = extrasTotal * (quote.taxRate / 100)
+  const grandTotal = quote.total + extrasTotal + extrasTax
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -96,11 +97,11 @@ export function PublicQuoteView({ quote, business }: PublicQuoteViewProps) {
           <div className="border-t border-gray-100 px-6 py-4 space-y-2 bg-gray-50">
             <div className="flex justify-between text-sm text-gray-600">
               <span>Subtotal</span>
-              <span>{formatCurrency(quote.subtotal + extrasTotal / (1 + quote.taxRate / 100))}</span>
+              <span>{formatCurrency(quote.subtotal + extrasTotal)}</span>
             </div>
             <div className="flex justify-between text-sm text-gray-600">
               <span>VAT ({quote.taxRate}%)</span>
-              <span>{formatCurrency(quote.taxAmount + extrasTotal * (quote.taxRate / 100) / (1 + quote.taxRate / 100))}</span>
+              <span>{formatCurrency(quote.taxAmount + extrasTax)}</span>
             </div>
             <Separator />
             <div className="flex justify-between font-bold text-gray-900 text-lg">

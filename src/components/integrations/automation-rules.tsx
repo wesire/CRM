@@ -26,7 +26,7 @@ const DEFAULT_RULES: AutomationRule[] = [
   {
     id: 'no_reply',
     label: 'No reply reminder',
-    description: 'Remind me if a customer hasn\'t replied within',
+    description: "Remind me if a customer hasn't replied within",
     enabled: true,
     daysValue: 2,
     daysLabel: 'days',
@@ -34,7 +34,7 @@ const DEFAULT_RULES: AutomationRule[] = [
   {
     id: 'unopened',
     label: 'Unopened quote reminder',
-    description: 'Remind me if a customer hasn\'t opened the quote within',
+    description: "Remind me if a customer hasn't opened the quote within",
     enabled: true,
     daysValue: 5,
     daysLabel: 'days',
