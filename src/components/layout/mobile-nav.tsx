@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Menu } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { NAV_ITEMS } from '@/lib/constants'
-import { cn } from '@/lib/utils'
+import { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, Zap } from "lucide-react"
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import { NAV_ITEMS } from "@/lib/constants"
+import { cn } from "@/lib/utils"
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
@@ -18,48 +18,37 @@ export function MobileNav() {
       <Button
         variant="ghost"
         size="icon"
-        className="md:hidden"
+        className="lg:hidden"
         onClick={() => setOpen(true)}
       >
-        <Menu className="h-5 w-5" />
-        <span className="sr-only">Toggle menu</span>
+        <Menu className="w-5 h-5" />
       </Button>
-
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-64 p-0">
-          <SheetHeader className="px-5 py-5 border-b border-gray-100">
-            <SheetTitle className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500">
-                <span className="text-white font-bold text-sm">QF</span>
+          <SheetHeader className="px-6 py-5 border-b border-slate-200">
+            <SheetTitle className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
               </div>
-              <span className="font-semibold text-gray-900">Quote Flow</span>
+              <span className="font-bold text-slate-900">Quote Flow</span>
             </SheetTitle>
           </SheetHeader>
-
-          <nav className="px-3 py-4 space-y-1">
+          <nav className="flex-1 px-4 py-4 space-y-1">
             {NAV_ITEMS.map((item) => {
-              const Icon = item.icon
-              const isActive =
-                item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
-
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                     isActive
-                      ? 'bg-brand-50 text-brand-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                   )}
                 >
-                  <Icon
-                    className={cn(
-                      'h-4 w-4 shrink-0',
-                      isActive ? 'text-brand-600' : 'text-gray-400'
-                    )}
-                  />
+                  <item.icon className={cn("w-5 h-5", isActive ? "text-indigo-600" : "text-slate-400")} />
                   {item.label}
                 </Link>
               )
