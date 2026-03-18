@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   // TODO: Redirect to Google OAuth consent screen
   const authUrl = `https://accounts.google.com/o/oauth2/auth?` +
     new URLSearchParams({

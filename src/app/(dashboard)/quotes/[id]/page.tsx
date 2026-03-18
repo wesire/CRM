@@ -66,7 +66,7 @@ const PLACEHOLDER_ACTIVITIES: Activity[] = [
   { id: 'a3', userId: 'u1', quoteId: '1', type: 'QUOTE_CREATED', title: 'Quote created', description: 'QF-1023 created from enquiry', createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3 - 1000 * 60 * 30) },
 ]
 
-export default function QuoteDetailPage({ params }: { params: { id: string } }) {
+export default function QuoteDetailPage() {
   const quote = PLACEHOLDER_QUOTE
   const requiredItems = quote.lineItems?.filter((li) => !li.optional) ?? []
   const optionalItems = quote.lineItems?.filter((li) => li.optional) ?? []

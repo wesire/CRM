@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   // TODO: Redirect to Microsoft OAuth consent screen
   const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?` +
     new URLSearchParams({
