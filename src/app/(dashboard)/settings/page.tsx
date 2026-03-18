@@ -38,7 +38,7 @@ export default function SettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5 sm:col-span-2">
               <Label htmlFor="businessName">Business Name</Label>
-              <Input id="businessName" defaultValue="Mitchell Plumbing and Heating" />
+              <Input id="businessName" defaultValue="Mitchell Plumbing & Heating" />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="businessEmail">Email</Label>

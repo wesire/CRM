@@ -18,13 +18,13 @@ const PLACEHOLDER_QUOTE = {
     { id: 'li2', description: 'Replacement stop tap (15mm)', quantity: 1, unitPrice: 28, total: 28, optional: false },
     { id: 'li3', description: 'Flexi hose set (pair)', quantity: 2, unitPrice: 12, total: 24, optional: false },
     { id: 'li4', description: 'Waste pipe repair kit', quantity: 1, unitPrice: 18.67, total: 18.67, optional: false },
-    { id: 'li5', description: 'Materials and consumables', quantity: 1, unitPrice: 15, total: 15, optional: false },
+    { id: 'li5', description: 'Materials & consumables', quantity: 1, unitPrice: 15, total: 15, optional: false },
     { id: 'li6', description: 'Inline water filter upgrade (optional extra)', quantity: 1, unitPrice: 221, total: 221, optional: true },
   ],
 }
 
 const BUSINESS = {
-  name: 'Mitchell Plumbing and Heating',
+  name: 'Mitchell Plumbing & Heating',
   phone: '07700 900000',
   email: 'james@mitchellplumbing.co.uk',
   accentColor: '#6366f1',
