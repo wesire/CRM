@@ -1,4 +1,4 @@
-import { Settings, Building2, Mail, Phone, MapPin, Palette, FileText, Percent, Calendar, Plug, Link as LinkIcon } from 'lucide-react'
+import { Building2, Mail, Phone, MapPin, Palette, FileText, Percent, Calendar, Plug, Link as LinkIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'

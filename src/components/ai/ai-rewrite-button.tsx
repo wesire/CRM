@@ -25,18 +25,15 @@ interface AIRewriteButtonProps {
 
 export function AIRewriteButton({ text, onRewrite, className }: AIRewriteButtonProps) {
   const [loading, setLoading] = useState(false)
-  const [activeStyle, setActiveStyle] = useState<string | null>(null)
 
   const handleRewrite = async (style: string) => {
     setLoading(true)
-    setActiveStyle(style)
     try {
       // Placeholder: simulate AI rewrite
       await new Promise((r) => setTimeout(r, 800))
       onRewrite?.(`[AI rewritten: ${style}] ${text}`, style)
     } finally {
       setLoading(false)
-      setActiveStyle(null)
     }
   }
 

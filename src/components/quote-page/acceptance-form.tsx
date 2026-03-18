@@ -42,7 +42,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
         </div>
         <h3 className="text-lg font-semibold text-gray-900">Quote accepted!</h3>
         <p className="text-sm text-gray-500">
-          Thank you, {name}. We'll be in touch to confirm the details and schedule the work.
+          Thank you, {name}. We&apos;ll be in touch to confirm the details and schedule the work.
         </p>
       </div>
     )
@@ -145,7 +145,7 @@ export function AcceptanceForm({ accentColor = '#6366f1', onAccept, onDecline }:
     <div className="space-y-4">
       <h2 className="font-semibold text-gray-900">Ready to proceed?</h2>
       <p className="text-sm text-gray-500">
-        Accepting this quote confirms you're happy to proceed with the work as described.
+        Accepting this quote confirms you&apos;re happy to proceed with the work as described.
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <Button

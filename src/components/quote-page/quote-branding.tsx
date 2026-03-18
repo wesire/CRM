@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface QuoteBrandingProps {
   businessName: string
   phone?: string
@@ -12,7 +14,7 @@ export function QuoteBranding({ businessName, phone, email, logoUrl, accentColor
       <div className="max-w-2xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           {logoUrl ? (
-            <img src={logoUrl} alt={businessName} className="h-8 w-8 rounded-lg object-cover" />
+            <Image src={logoUrl} alt={businessName} width={32} height={32} className="rounded-lg object-cover" />
           ) : (
             <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
               <span className="text-white font-bold text-sm">

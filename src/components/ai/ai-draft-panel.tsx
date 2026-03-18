@@ -18,7 +18,7 @@ const PLACEHOLDER_DRAFTS: Record<string, string> = {
   'quote-note': `Thank you for getting in touch. Please find your personalised quote below. All work is fully insured and comes with a 12-month guarantee.\n\nFeel free to accept using the button below or call me if you'd like to discuss anything.`,
 }
 
-export function AIDraftPanel({ type, context, onUse, className }: AIDraftPanelProps) {
+export function AIDraftPanel({ type, context: _context, onUse, className }: AIDraftPanelProps) {
   const [draft, setDraft] = useState('')
   const [loading, setLoading] = useState(false)
   const [generated, setGenerated] = useState(false)
