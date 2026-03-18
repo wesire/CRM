@@ -17,11 +17,11 @@ export function EnquiryCard({ enquiry, className }: EnquiryCardProps) {
   const statusInfo = ENQUIRY_STATUSES.find((s) => s.value === enquiry.status)
   const SourceIcon = sourceInfo?.icon
 
-  const statusVariantMap: Record<string, 'new' | 'contacted' | 'quoted' | 'closed'> = {
-    NEW: 'new',
-    CONTACTED: 'contacted',
-    QUOTED: 'quoted',
-    CLOSED: 'closed',
+  const statusVariantMap: Record<string, 'default' | 'secondary' | 'outline' | 'destructive' | 'success' | 'warning' | 'draft' | 'sent' | 'opened' | 'replied' | 'accepted' | 'lost' | 'expired'> = {
+    NEW: 'default',
+    CONTACTED: 'warning',
+    QUOTED: 'success',
+    CLOSED: 'secondary',
   }
 
   return (
