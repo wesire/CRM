@@ -18,12 +18,13 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  customers  Customer[]
-  enquiries  Enquiry[]
-  quotes     Quote[]
-  activities Activity[]
-  followUps  FollowUp[]
-  settings   UserSettings?
+  customers    Customer[]
+  enquiries    Enquiry[]
+  quotes       Quote[]
+  activities   Activity[]
+  followUps    FollowUp[]
+  settings     UserSettings?
+  integrations Integration[]
 }
 
 model UserSettings {
@@ -41,10 +42,14 @@ model UserSettings {
   currency        String  @default("GBP")
   taxRate         Float   @default(20.0)
   taxLabel        String  @default("VAT")
-  followUpDays    Int     @default(3)
-  quoteExpiryDays Int     @default(30)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  followUpDays           Int     @default(3)
+  quoteExpiryDays        Int     @default(30)
+  themePreset            String  @default("modern")
+  autoFollowUp           Boolean @default(true)
+  followUpNoReplyDays    Int     @default(2)
+  followUpUnopenedDays   Int     @default(5)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 }
 
 model Customer {
@@ -98,6 +103,7 @@ model Enquiry {
   contactName  String?
   contactEmail String?
   contactPhone String?
+  rawEmailText String?
   quoteId      String?       @unique
   quote        Quote?        @relation(fields: [quoteId], references: [id])
   createdAt    DateTime      @default(now())
@@ -141,6 +147,9 @@ model Quote {
   wonReason    String?
   customerNote String?
   internalNote String?
+  acceptedByName  String?
+  acceptedByEmail String?
+  signatureData   String?
   publicToken  String      @unique @default(cuid())
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
@@ -165,6 +174,7 @@ model QuoteLineItem {
   unitPrice   Float    @default(0)
   total       Float    @default(0)
   optional    Boolean  @default(false)
+  selected    Boolean  @default(true)
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -173,6 +183,7 @@ model QuoteLineItem {
 }
 
 enum ActivityType {
+  AI_SUGGESTION
   ENQUIRY_CREATED
   ENQUIRY_UPDATED
   QUOTE_CREATED
@@ -227,6 +238,7 @@ model FollowUp {
   status      FollowUpStatus @default(PENDING)
   dueDate     DateTime
   note        String?
+  automated   Boolean        @default(false)
   completedAt DateTime?
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
@@ -235,4 +247,26 @@ model FollowUp {
   @@index([quoteId])
   @@index([dueDate])
   @@index([status])
+}
+
+enum IntegrationProvider {
+  GMAIL
+  OUTLOOK
+}
+
+model Integration {
+  id           String              @id @default(cuid())
+  userId       String
+  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider     IntegrationProvider
+  accessToken  String?
+  refreshToken String?
+  email        String?
+  connected    Boolean             @default(false)
+  lastSyncAt   DateTime?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@unique([userId, provider])
+  @@index([userId])
 }

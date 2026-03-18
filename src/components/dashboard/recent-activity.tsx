@@ -9,6 +9,7 @@ import {
   Plus,
   User,
   Bell,
+  Sparkles,
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatRelativeTime } from '@/lib/utils'
@@ -24,6 +25,7 @@ interface ActivityItem {
 }
 
 const activityIcons: Record<ActivityType, React.ComponentType<{ className?: string }>> = {
+  AI_SUGGESTION: Sparkles,
   ENQUIRY_CREATED: Plus,
   ENQUIRY_UPDATED: FileText,
   QUOTE_CREATED: FileText,
@@ -43,6 +45,7 @@ const activityIcons: Record<ActivityType, React.ComponentType<{ className?: stri
 }
 
 const activityColors: Record<ActivityType, string> = {
+  AI_SUGGESTION: 'bg-violet-100 text-violet-600',
   ENQUIRY_CREATED: 'bg-blue-100 text-blue-600',
   ENQUIRY_UPDATED: 'bg-gray-100 text-gray-600',
   QUOTE_CREATED: 'bg-indigo-100 text-indigo-600',
