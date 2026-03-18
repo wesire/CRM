@@ -17,7 +17,7 @@ export function EnquiryCard({ enquiry, className }: EnquiryCardProps) {
   const statusInfo = ENQUIRY_STATUSES.find((s) => s.value === enquiry.status)
   const SourceIcon = sourceInfo?.icon
 
-  const statusVariantMap: Record<string, 'default' | 'secondary' | 'outline' | 'destructive' | 'success' | 'warning'> = {
+  const statusVariantMap: Record<string, 'default' | 'secondary' | 'outline' | 'destructive' | 'success' | 'warning' | 'draft' | 'sent' | 'opened' | 'replied' | 'accepted' | 'lost' | 'expired'> = {
     NEW: 'default',
     CONTACTED: 'warning',
     QUOTED: 'success',
