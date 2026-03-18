@@ -3,6 +3,7 @@ export type QuoteStatus = 'DRAFT' | 'SENT' | 'OPENED' | 'REPLIED' | 'ACCEPTED' |
 export type EnquiryStatus = 'NEW' | 'CONTACTED' | 'QUOTED' | 'CLOSED'
 export type EnquirySource = 'PHONE' | 'EMAIL' | 'WEBSITE' | 'REFERRAL' | 'SOCIAL_MEDIA' | 'WALK_IN' | 'OTHER'
 export type ActivityType =
+  | 'AI_SUGGESTION'
   | 'ENQUIRY_CREATED'
   | 'ENQUIRY_UPDATED'
   | 'QUOTE_CREATED'
@@ -97,6 +98,7 @@ export interface QuoteLineItem {
   unitPrice: number
   total: number
   optional: boolean
+  selected: boolean
   sortOrder: number
   createdAt: Date
   updatedAt: Date
@@ -130,6 +132,9 @@ export interface Quote {
   updatedAt: Date
   lineItems?: QuoteLineItem[]
   enquiry?: Enquiry | null
+  acceptedByName?: string | null
+  acceptedByEmail?: string | null
+  signatureData?: string | null
 }
 
 export interface Activity {
@@ -157,6 +162,7 @@ export interface FollowUp {
   completedAt?: Date | null
   createdAt: Date
   updatedAt: Date
+  automated: boolean
 }
 
 // UI-specific types
@@ -172,4 +178,19 @@ export interface NavItem {
   label: string
   href: string
   icon: React.ComponentType<{ className?: string }>
+}
+
+export type IntegrationProvider = 'GMAIL' | 'OUTLOOK'
+
+export interface Integration {
+  id: string
+  userId: string
+  provider: IntegrationProvider
+  accessToken?: string | null
+  refreshToken?: string | null
+  email?: string | null
+  connected: boolean
+  lastSyncAt?: Date | null
+  createdAt: Date
+  updatedAt: Date
 }

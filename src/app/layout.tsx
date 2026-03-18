@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ fontFamily: 'var(--font-inter)' }}>
       <body className="min-h-screen bg-gray-50 font-sans antialiased">{children}</body>
     </html>
   )

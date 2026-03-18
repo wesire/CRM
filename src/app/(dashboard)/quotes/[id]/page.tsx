@@ -51,12 +51,12 @@ const PLACEHOLDER_QUOTE: Quote = {
   createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
   updatedAt: new Date(),
   lineItems: [
-    { id: 'li1', quoteId: '1', description: 'Labour — 4 hours @ £65/hr', quantity: 4, unitPrice: 65, total: 260, optional: false, sortOrder: 0, createdAt: new Date(), updatedAt: new Date() },
-    { id: 'li2', quoteId: '1', description: 'Replacement stop tap (15mm)', quantity: 1, unitPrice: 28, total: 28, optional: false, sortOrder: 1, createdAt: new Date(), updatedAt: new Date() },
-    { id: 'li3', quoteId: '1', description: 'Flexi hose set (pair)', quantity: 2, unitPrice: 12, total: 24, optional: false, sortOrder: 2, createdAt: new Date(), updatedAt: new Date() },
-    { id: 'li4', quoteId: '1', description: 'Waste pipe repair kit', quantity: 1, unitPrice: 18.67, total: 18.67, optional: false, sortOrder: 3, createdAt: new Date(), updatedAt: new Date() },
-    { id: 'li5', quoteId: '1', description: 'PTFE tape, jointing compound, consumables', quantity: 1, unitPrice: 15, total: 15, optional: false, sortOrder: 4, createdAt: new Date(), updatedAt: new Date() },
-    { id: 'li6', quoteId: '1', description: 'Water filter upgrade (optional)', quantity: 1, unitPrice: 221, total: 221, optional: true, sortOrder: 5, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li1', quoteId: '1', description: 'Labour — 4 hours @ £65/hr', quantity: 4, unitPrice: 65, total: 260, optional: false, selected: true, sortOrder: 0, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li2', quoteId: '1', description: 'Replacement stop tap (15mm)', quantity: 1, unitPrice: 28, total: 28, optional: false, selected: true, sortOrder: 1, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li3', quoteId: '1', description: 'Flexi hose set (pair)', quantity: 2, unitPrice: 12, total: 24, optional: false, selected: true, sortOrder: 2, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li4', quoteId: '1', description: 'Waste pipe repair kit', quantity: 1, unitPrice: 18.67, total: 18.67, optional: false, selected: true, sortOrder: 3, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li5', quoteId: '1', description: 'PTFE tape, jointing compound, consumables', quantity: 1, unitPrice: 15, total: 15, optional: false, selected: true, sortOrder: 4, createdAt: new Date(), updatedAt: new Date() },
+    { id: 'li6', quoteId: '1', description: 'Water filter upgrade (optional)', quantity: 1, unitPrice: 221, total: 221, optional: true, selected: false, sortOrder: 5, createdAt: new Date(), updatedAt: new Date() },
   ],
 }
 
